@@ -7,7 +7,7 @@ interface SideBarItems {
     district: string;
     typeConst: string;
     price: number;
-    isChecked: any;
+    isChecked: boolean;
 }
 
 const SideBar: React.FC = () => {
@@ -35,28 +35,29 @@ const SideBar: React.FC = () => {
     const sumItems: number = items.length; //SUM of all items
    
 
-    const [isChecked, setIsChecked] = useState(false);
-
+    const [isChecked, setIsChecked] = useState<boolean[]>([]);
+    
+    
+    //old solution
+    /*
     const handleClick = () => {
       setIsChecked(!isChecked);
     };
-    
+    */
 
-    const sumSelectedItems:number = ((items) => [items.checked] === true);
-    
-    const [sumChecked, setSumChecked] = useState(0);
-    
-    /*
-    const sumSelected = () => {
-        setSumChecked(sumChecked + sumSelectedItems);
+    //handleClick for CheckBoxes
+
+    const handleClick = (index: number) => {
+        const newCheckedState = [...isChecked]; // create new Array based prev
+        newCheckedState[index] = !newCheckedState[index];
+        setIsChecked(newCheckedState);
     }
 
-    sumSelected();
-       */ 
+    //counter active checkbox
 
-    const countCheckedCheckboxes = () => {
-        return items.filter(items => items.checked).length;
-    };
+    const SumCheckBox: number = isChecked.filter((value) => value === true).length;
+
+    
 
     return(
         <div className="w-1/3">
@@ -88,7 +89,7 @@ const SideBar: React.FC = () => {
                                         <p>Район: <span className="font-bold">{items.district}</span></p>
                                         <p>Тип конструкции: <span className="font-bold">{items.typeConst}</span></p>
                                         <p>Стоимость: <span className="font-bold">{items.price}</span></p>
-                                        <input type="checkbox" checked={isChecked[index]} onClick={handleClick} onChange={() => {}} />
+                                        <input type="checkbox" checked={isChecked[index]} onClick={() => handleClick(index)} onChange={() => {}} />
                                         
                                     </li>
                                    )) 
@@ -101,7 +102,8 @@ const SideBar: React.FC = () => {
                 </div>
                 <div>
                             ИТОГО: 
-                            <p>Всего конструкций: {sumItems}</p>                            
+                            <p>Всего конструкций: {sumItems}</p>
+                            <p>Выделено конструкций: {SumCheckBox}</p>                               
                             
                 </div>
             </div>
