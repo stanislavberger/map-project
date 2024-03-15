@@ -1,6 +1,7 @@
 import { YMaps, Map, Placemark, SearchControl, TypeSelector } from '@pbe/react-yandex-maps';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import Balloon from './Balloon';
 
 /*
 
@@ -51,6 +52,7 @@ const MapContainer: React.FC = () => {
 
     })
 
+    
 
     // Firebase connection - try to catch these Data
 
@@ -99,14 +101,16 @@ const MapContainer: React.FC = () => {
                         modules={["control.ZoomControl", "control.FullscreenControl"]}
                     > 
                     {
-                        items.map((items: MapItem, index: number) => (
+                        items.map((items: MapItem, index: number)   => (
                             <Placemark
                             key={index}
                             modules={["geoObject.addon.balloon"]}
                             defaultGeometry={[items.lat, items.lon]}
                             properties={{
+                                
                               balloonContentBody:
-                                '<p>'+ items.address +'</p>'
+                                '<div>' + items.address +'</div>'
+
                             }}
 
                         />

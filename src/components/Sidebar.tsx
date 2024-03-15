@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { Select } from 'antd'
 
 interface SideBarItems {
     address: string;
@@ -68,10 +69,33 @@ const SideBar: React.FC = () => {
                 <div className=" border rounded overflow-hidden">
                     <div className="border-b">
                         <button className="w-full py-2 px-4 bg-gray-800 hover:bg-gray-300 text-left">
-                            Формат
+                            Список фильтров
                         </button>
                         <div className="py-2 px-4">
-                            <p>Здесь можно выбрать форматы</p>
+                            <Select 
+                                defaultValue="Выберите тип конструкии"
+                                className="bg-gray-900 font-white"
+                                options={[
+                                    {value: 'Щиты 6х3 Статика', label: 'Щиты 6х3 Статика'},
+                                    {value: 'Щиты 6х3 Digital', label: 'Щиты 6х3 Digital'},
+                                    {value: 'Ситиформат 1,2х1,8', label: 'Ситиформат 1,2х1,8'},
+                                    {value: 'Пиллары 1,4х3', label: 'Пиллары 1,4х3'},
+                                    {value: 'Ситиборды 2,7х3,7', label: 'Ситиборды 2,7х3,7'},
+                                    {value: 'Супресайты 5х12', label: 'Супресайты 5х12'},
+                                ]}
+                            />
+                            <Select 
+                                defaultValue="Выберите район"
+                                
+                                options={[
+                                    {value: 'Адмиралтейский', label: 'Адмиралтейский'},
+                                    {value: 'Василеостровский', label: 'Василеостровский'},
+                                    {value: 'Выборгский', label: 'Выборгский'},
+                                    {value: 'Калининский', label: 'Калининский'},
+                                    {value: 'Кировский', label: 'Кировский'},
+                                    {value: 'Красновгвардейский', label: 'Красногвардейский'},
+                                ]}
+                            />
                         </div>
                     </div>
                     <div className="border-b">
