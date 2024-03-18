@@ -2,6 +2,7 @@ import { YMaps, Map, Placemark, SearchControl, TypeSelector } from '@pbe/react-y
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Balloon from './Balloon';
+import CF from '../assets/СF.png'
 
 /*
 
@@ -93,7 +94,7 @@ const MapContainer: React.FC = () => {
                     
                     <Map
                         defaultState={{
-                        center: [55.75, 37.57],
+                        center: [59.9386, 30.3141],
                         zoom: 15,
                         controls: ["zoomControl", "fullscreenControl"],
                         }}
@@ -107,11 +108,15 @@ const MapContainer: React.FC = () => {
                             modules={["geoObject.addon.balloon"]}
                             defaultGeometry={[items.lat, items.lon]}
                             properties={{
-                                
+                              iconLayout: 'CF',
+                              iconImageHref: '../assets/CF.png',
+                              iconImageSize: [30, 42],
+                              iconImageOffset: [-3, -42],  
                               balloonContentBody:
-                                '<div>' + items.address +'</div>'
-
+                                '<p style="font-weight: 700;">' + items.address +'</p>',
+                                
                             }}
+                            
 
                         />
                         ))

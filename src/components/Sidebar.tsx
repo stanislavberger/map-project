@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Select } from 'antd'
+import { useHistory } from 'react-router-dom';
 
 interface SideBarItems {
     address: string;
@@ -32,6 +33,8 @@ const SideBar: React.FC = () => {
         fetchData(); 
 
     })
+
+    
 
     const sumItems: number = items.length; //SUM of all items
    
@@ -98,7 +101,6 @@ const SideBar: React.FC = () => {
     }
 
     let totalNum: number = totalPrice(filteredItems);
-
 
     return(
         <div className="w-1/3">
