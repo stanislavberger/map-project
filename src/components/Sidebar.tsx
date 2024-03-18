@@ -71,6 +71,12 @@ const SideBar: React.FC = () => {
     }
 
     let totalNum: number = totalPrice(items);
+
+    //unique values const
+
+    const uniqueDistricts = Array.from(new Set(items.map(item => item.district)));
+    const uniqueTypeConst = Array.from(new Set(items.map(item => item.typeConst)));
+
     
 
     return(
@@ -88,26 +94,11 @@ const SideBar: React.FC = () => {
                             <Select 
                                 defaultValue="Выберите тип конструкии"
                                 className="bg-gray-900 font-white"
-                                options={[
-                                    {value: 'Щиты 6х3 Статика', label: 'Щиты 6х3 Статика'},
-                                    {value: 'Щиты 6х3 Digital', label: 'Щиты 6х3 Digital'},
-                                    {value: 'Ситиформат 1,2х1,8', label: 'Ситиформат 1,2х1,8'},
-                                    {value: 'Пиллары 1,4х3', label: 'Пиллары 1,4х3'},
-                                    {value: 'Ситиборды 2,7х3,7', label: 'Ситиборды 2,7х3,7'},
-                                    {value: 'Супресайты 5х12', label: 'Супресайты 5х12'},
-                                ]}
+                                options={uniqueTypeConst.map(type => ({ value: type, label: type }))}
                             />
                             <Select 
                                 defaultValue="Выберите район"
-                                
-                                options={[
-                                    {value: 'Адмиралтейский', label: 'Адмиралтейский'},
-                                    {value: 'Василеостровский', label: 'Василеостровский'},
-                                    {value: 'Выборгский', label: 'Выборгский'},
-                                    {value: 'Калининский', label: 'Калининский'},
-                                    {value: 'Кировский', label: 'Кировский'},
-                                    {value: 'Красновгвардейский', label: 'Красногвардейский'},
-                                ]}
+                                options={uniqueDistricts.map(district => ({ value: district, label: district }))}
                             />
                         </div>
                     </div>
@@ -153,3 +144,13 @@ const SideBar: React.FC = () => {
 export default SideBar
 
 
+/* 
+{[
+                                    {value: 'Щиты 6х3 Статика', label: 'Щиты 6х3 Статика'},
+                                    {value: 'Щиты 6х3 Digital', label: 'Щиты 6х3 Digital'},
+                                    {value: 'Ситиформат 1,2х1,8', label: 'Ситиформат 1,2х1,8'},
+                                    {value: 'Пиллары 1,4х3', label: 'Пиллары 1,4х3'},
+                                    {value: 'Ситиборды 2,7х3,7', label: 'Ситиборды 2,7х3,7'},
+                                    {value: 'Супресайты 5х12', label: 'Супресайты 5х12'},
+                                ]}
+*/
