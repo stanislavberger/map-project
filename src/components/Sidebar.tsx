@@ -58,34 +58,23 @@ const SideBar: React.FC = () => {
 
     const SumCheckBox: number = isChecked.filter((value) => value === true).length;
     
-
-    //counter pirce
-    const totalPrice = () => {
-        let totalNum = 0;
-        for (let i = 0; i <items.length; i++) {
-            if (isChecked[i]) {
-                totalNum += items[i].price;
-            }
-        }
-        return totalNum;
-    }
-
-    let totalNum: number = totalPrice(items);
-
     //unique values const
 
     const [selectedDistrict, setSelectedDistrict] = useState<string | null>(null);
     const [selectedTypeConst, setSelectedTypeConst] = useState<string | null>(null);
 
+    // send to SELECTORS
    const uniqueDistricts = Array.from(new Set(items.map(item => item.district)));
    const uniqueTypeConst = Array.from(new Set(items.map(item => item.typeConst)));
 
     const handleDistrictChange = (value: string) => {
-        setSelectedDistrict(value);
+        setSelectedDistrict(value === 'Все элементы' ? null : value);
     }
     const handleTypeConstChange = (value: string) => {
-        setSelectedTypeConst(value);
+        setSelectedTypeConst(value === 'Все элементы' ? null : value);
     }
+
+    //Set conditionals
 
    const filteredItems = items.filter(items => {
         if (selectedDistrict && items.district !== selectedDistrict) {
@@ -95,7 +84,21 @@ const SideBar: React.FC = () => {
             return false;
         }
         return true;
-    });  
+    }); 
+    
+    //counter pirce
+    const totalPrice = () => {
+        let totalNum = 0;
+        for (let i = 0; i <filteredItems.length; i++) {
+            if (isChecked[i]) {
+                totalNum += filteredItems[i].price;
+            }
+        }
+        return totalNum;
+    }
+
+    let totalNum: number = totalPrice(filteredItems);
+
 
     return(
         <div className="w-1/3">
