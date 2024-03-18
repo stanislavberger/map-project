@@ -57,7 +57,20 @@ const SideBar: React.FC = () => {
     //counter active checkbox
 
     const SumCheckBox: number = isChecked.filter((value) => value === true).length;
+    
 
+    //counter pirce
+    const totalPrice = () => {
+        let totalNum = 0;
+        for (let i = 0; i <items.length; i++) {
+            if (isChecked[i]) {
+                totalNum += items[i].price;
+            }
+        }
+        return totalNum;
+    }
+
+    let totalNum: number = totalPrice(items);
     
 
     return(
@@ -127,7 +140,8 @@ const SideBar: React.FC = () => {
                 <div>
                             ИТОГО: 
                             <p>Всего конструкций: {sumItems}</p>
-                            <p>Выделено конструкций: {SumCheckBox}</p>                               
+                            <p>Выделено конструкций: {SumCheckBox}</p>
+                            <p>Сумма кампании: {totalNum}</p>                                  
                             
                 </div>
             </div>
