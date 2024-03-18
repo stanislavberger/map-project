@@ -74,10 +74,28 @@ const SideBar: React.FC = () => {
 
     //unique values const
 
-    const uniqueDistricts = Array.from(new Set(items.map(item => item.district)));
-    const uniqueTypeConst = Array.from(new Set(items.map(item => item.typeConst)));
+    const [selectedDistrict, setSelectedDistrict] = useState<string | null>(null);
+    const [selectedTypeConst, setSelectedTypeConst] = useState<string | null>(null);
 
-    
+   const uniqueDistricts = Array.from(new Set(items.map(item => item.district)));
+   const uniqueTypeConst = Array.from(new Set(items.map(item => item.typeConst)));
+
+    const handleDistrictChange = (value: string) => {
+        setSelectedDistrict(value);
+    }
+    const handleTypeConstChange = (value: string) => {
+        setSelectedTypeConst(value);
+    }
+
+   const filteredItems = items.filter(items => {
+        if (selectedDistrict && items.district !== selectedDistrict) {
+            return false;
+        }
+        if (selectedTypeConst && items.typeConst !== selectedTypeConst) {
+            return false;
+        }
+        return true;
+    });  
 
     return(
         <div className="w-1/3">
@@ -95,10 +113,12 @@ const SideBar: React.FC = () => {
                                 defaultValue="Выберите тип конструкии"
                                 className="bg-gray-900 font-white"
                                 options={uniqueTypeConst.map(type => ({ value: type, label: type }))}
+                                onChange={handleTypeConstChange}
                             />
                             <Select 
                                 defaultValue="Выберите район"
                                 options={uniqueDistricts.map(district => ({ value: district, label: district }))}
+                                onChange={handleDistrictChange}
                             />
                         </div>
                     </div>
@@ -110,7 +130,7 @@ const SideBar: React.FC = () => {
                         <label htmlFor="filterCheckbox">Фильтровать элементы</label>
                             <ul className="w-full">
                                 {
-                                   items.map((items: SideBarItems, index) => (
+                                   filteredItems.map((items: SideBarItems, index) => (
                                     <li key={index} className="border-b border-slate-300 border-solid w-full p-4 text-sm">
                                         <p className="text-bold">Адрес: <span className="font-bold">{items.address}</span></p>
                                         <p>GID: <span className="font-bold">{items.GID}</span></p>
