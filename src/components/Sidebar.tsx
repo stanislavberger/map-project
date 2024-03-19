@@ -103,12 +103,12 @@ const SideBar: React.FC = () => {
     let totalNum: number = totalPrice(filteredItems);
 
     return(
-        <div className="w-1/3">
-            <div className="container p-4">
-                <div>
+        <div className="md:w-1/3 md:h-screen sm:w-full sm:h-auto sm:relative sm:z-0">
+            <div className="md:container p-4 h-screen overflow-y-auto sm:w-full sm:m-auto sm:mt-auto">
+                <div className="px-1 py-3 mb-4">
                     <h1 className="font-bold text-2xl">Планировщик кампаний</h1>
                 </div>
-                <div className=" border rounded overflow-hidden">
+                <div className="md:border rounded overflow-hidden sm:w-full">
                     <div className="border-b">
                         <button className="w-full py-2 px-4 bg-gray-800 hover:bg-gray-300 text-left">
                             Список фильтров
@@ -127,7 +127,7 @@ const SideBar: React.FC = () => {
                             />
                         </div>
                     </div>
-                    <div className="border-b">
+                    <div className="border-b sm:w-full" >
                         <button className="w-full py-2 bg-gray-800 hover:bg-gray-300 text-left">
                             Список поверхностей
                         </button>
@@ -150,14 +150,13 @@ const SideBar: React.FC = () => {
                                 
                             </ul>
                         </div>
-            
                     </div>
                 </div>
-                <div>
+                <div className="">
                             ИТОГО: 
-                            <p>Всего конструкций: {sumItems}</p>
-                            <p>Выделено конструкций: {SumCheckBox}</p>
-                            <p>Сумма кампании: {totalNum}</p>                                  
+                            <p>Всего конструкций: {sumItems} шт.</p>
+                            <p>Выделено конструкций: {SumCheckBox} шт.</p>
+                            <p>Сумма кампании: <span className="text-lg font-bold">{totalNum} ₽</span></p>                                  
                             
                 </div>
             </div>

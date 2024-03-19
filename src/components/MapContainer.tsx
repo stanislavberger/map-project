@@ -81,7 +81,7 @@ const MapContainer: React.FC = () => {
     /* If checkBox: is true, then filter by (isCheked)*/
     
     return (
-        <div className="w-2/3 bg-gray-300">
+        <div className="md:h-screen md:w-2/3 bg-gray-300 sm:w-full sm:h-1/2 sm:z-0">
             <YMaps
                 query={{
                     load: "package.full",
