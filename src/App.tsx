@@ -1,7 +1,6 @@
 import './App.css'
 import SideBar from './components/Sidebar'
 import MapContainer from './components/MapContainer'
-import NotFoundPage from './NotFoundPage';
 
 
 function App() {

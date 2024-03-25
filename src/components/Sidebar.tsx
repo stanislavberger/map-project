@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Select } from 'antd'
-import { useHistory } from 'react-router-dom';
+
 
 interface SideBarItems {
     address: string;
@@ -10,7 +10,11 @@ interface SideBarItems {
     typeConst: string;
     price: number;
     isChecked: boolean;
+    
 }
+
+
+
 
 const SideBar: React.FC = () => {
     const [items, setItems] = useState([]);
@@ -67,8 +71,8 @@ const SideBar: React.FC = () => {
     const [selectedTypeConst, setSelectedTypeConst] = useState<string | null>(null);
 
     // send to SELECTORS
-   const uniqueDistricts = Array.from(new Set(items.map(item => item.district)));
-   const uniqueTypeConst = Array.from(new Set(items.map(item => item.typeConst)));
+   const uniqueDistricts:string[]= Array.from(new Set(items.map((item: SideBarItems) => item.district)));
+   const uniqueTypeConst:string[] = Array.from(new Set(items.map((item: SideBarItems) => item.typeConst)));
 
     const handleDistrictChange = (value: string) => {
         setSelectedDistrict(value === 'Все элементы' ? null : value);
@@ -79,7 +83,7 @@ const SideBar: React.FC = () => {
 
     //Set conditionals
 
-   const filteredItems = items.filter(items => {
+   const filteredItems: SideBarItems[] = items.filter((items: SideBarItems) => {
         if (selectedDistrict && items.district !== selectedDistrict) {
             return false;
         }
@@ -90,7 +94,8 @@ const SideBar: React.FC = () => {
     }); 
     
     //counter pirce
-    const totalPrice = () => {
+
+    const totalPrice = (filteredItems: { price: number }[], isChecked: boolean[]) => {
         let totalNum = 0;
         for (let i = 0; i <filteredItems.length; i++) {
             if (isChecked[i]) {
@@ -100,7 +105,7 @@ const SideBar: React.FC = () => {
         return totalNum;
     }
 
-    let totalNum: number = totalPrice(filteredItems);
+    let totalNum: number = totalPrice(filteredItems, isChecked);
 
     return(
         <div className="md:w-1/3 md:h-screen sm:w-full sm:h-auto sm:relative sm:z-0">

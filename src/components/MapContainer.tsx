@@ -1,8 +1,6 @@
-import { YMaps, Map, Placemark, SearchControl, TypeSelector } from '@pbe/react-yandex-maps';
+import { YMaps, Map, Placemark } from '@pbe/react-yandex-maps';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import Balloon from './Balloon';
-import CF from '../assets/СF.png'
 
 /*
 
