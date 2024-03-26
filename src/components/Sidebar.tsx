@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Select, Button } from 'antd'
-import Summary from "./Summary";
 
 
 interface SideBarItems {
