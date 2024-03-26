@@ -9,6 +9,7 @@ interface SideBarItems {
     district: string;
     typeConst: string;
     price: number;
+    img: string;
     isChecked: boolean;
     
 }
@@ -141,13 +142,19 @@ const SideBar: React.FC = () => {
                             <ul className="w-full">
                                 {
                                    filteredItems.map((items: SideBarItems, index) => (
-                                    <li key={index} className="border-b border-slate-300 border-solid w-full p-4 text-sm">
-                                        <p className="text-bold">Адрес: <span className="font-bold">{items.address}</span></p>
-                                        <p>GID: <span className="font-bold">{items.GID}</span></p>
-                                        <p>Район: <span className="font-bold">{items.district}</span></p>
-                                        <p>Тип конструкции: <span className="font-bold">{items.typeConst}</span></p>
-                                        <p>Стоимость: <span className="font-bold">{items.price}</span></p>
-                                        <input type="checkbox" checked={isChecked[index]} onClick={() => handleClick(index)} onChange={() => {}} />
+                                    <li key={index} className="border-b border-slate-300 border-solid w-full p-4 text-sm flex flex-row sm:p-2">
+                                        <div className="flex w-1/3">
+                                            <input className="mr-3 sm:mr-2" type="checkbox" checked={isChecked[index]} onClick={() => handleClick(index)} onChange={() => {}} />
+                                            <img src={items.img} alt="" className="object-contain rounded-sm" />
+                                        </div>
+                                        <div className="flex w-2/3 flex-col pl-9">
+                                            <p className="text-bold">Адрес: <span className="font-bold">{items.address}</span></p>
+                                            <p>GID: <span className="font-bold">{items.GID}</span></p>
+                                            <p>Район: <span className="font-bold">{items.district}</span></p>
+                                            <p>Тип конструкции: <span className="font-bold">{items.typeConst}</span></p>
+                                            <p>Стоимость: <span className="font-bold">{items.price}</span></p>
+                                            
+                                        </div>
                                         
                                     </li>
                                    )) 

@@ -113,6 +113,7 @@ const MapContainer: React.FC = () => {
                               balloonContentBody:
                                 '<p style="font-weight: 700;">' + items.address +'</p>',
                                 
+                                
                             }}
                             
 
