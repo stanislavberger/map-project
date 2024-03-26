@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { Select } from 'antd'
+import { Select, Button } from 'antd'
+import Summary from "./Summary";
 
 
 interface SideBarItems {
@@ -110,10 +111,10 @@ const SideBar: React.FC = () => {
 
     return(
         <div className="md:w-1/3 md:h-screen sm:w-full sm:h-auto sm:relative sm:z-0">
-            <div className="md:container p-4 h-screen overflow-y-auto sm:w-full sm:m-auto sm:mt-auto">
-                <div className="px-1 py-3 mb-4">
-                    <h1 className="font-bold text-2xl">Планировщик кампаний</h1>
-                </div>
+            <div className="pl-4 pt-5 mb-2">
+                <h1 className="font-bold text-2xl">Планировщик кампаний</h1>
+            </div>
+            <div className="md:container p-4 h-4/5 overflow-y-auto sm:w-full sm:m-auto sm:mt-auto">
                 <div className="md:border rounded overflow-hidden sm:w-full">
                     <div className="border-b">
                         <button className="w-full py-2 px-4 bg-gray-800 hover:bg-gray-300 text-left">
@@ -164,12 +165,16 @@ const SideBar: React.FC = () => {
                         </div>
                     </div>
                 </div>
-                <div className="">
-                            ИТОГО: 
-                            <p>Всего конструкций: {sumItems} шт.</p>
-                            <p>Выделено конструкций: {SumCheckBox} шт.</p>
-                            <p>Сумма кампании: <span className="text-lg font-bold">{totalNum} ₽</span></p>                                  
-                            
+            </div>
+            <div className="flex flex-row justify-center items-center">
+                <div className="p-4 w-1/2">
+                    <p className="font-bold">ИТОГО: </p> 
+                    <p>Всего конструкций: {sumItems} шт.</p>
+                    <p>Выделено конструкций: {SumCheckBox} шт.</p>
+                    <p>Сумма кампании: <span className="text-lg font-bold">{totalNum} ₽</span></p> 
+                </div>
+                <div className="w-1/2 flex justify-center align-middle">
+                    <Button className="text-white h-10 font-bold border-2">Создать кампанию</Button>
                 </div>
             </div>
         </div>
