@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Select, Button } from 'antd'
+import TotalPanel from "./TotalPanel";
 
 
 interface SideBarItems {
@@ -13,9 +14,6 @@ interface SideBarItems {
     isChecked: boolean;
     
 }
-
-
-
 
 const SideBar: React.FC = () => {
     const [items, setItems] = useState([]);
@@ -64,8 +62,8 @@ const SideBar: React.FC = () => {
 
     //counter active checkbox
 
-    const SumCheckBox: number = isChecked.filter((value) => value === true).length;
-    
+    const sumCheckBox: number = isChecked.filter((value) => value === true).length;
+   
     //unique values const
 
     const [selectedDistrict, setSelectedDistrict] = useState<string | null>(null);
@@ -165,17 +163,13 @@ const SideBar: React.FC = () => {
                     </div>
                 </div>
             </div>
-            <div className="flex flex-row justify-center items-center">
-                <div className="p-4 w-1/2">
-                    <p className="font-bold">ИТОГО: </p> 
-                    <p>Всего конструкций: {sumItems} шт.</p>
-                    <p>Выделено конструкций: {SumCheckBox} шт.</p>
-                    <p>Сумма кампании: <span className="text-lg font-bold">{totalNum} ₽</span></p> 
-                </div>
-                <div className="w-1/2 flex justify-center align-middle">
-                    <Button className="text-white h-10 font-bold border-2">Создать кампанию</Button>
-                </div>
-            </div>
+            
+            <TotalPanel
+                totalNum={sumItems}
+                totalChecked={sumCheckBox}
+                totalSum={totalNum}
+            />
+
         </div>
     )
 }
