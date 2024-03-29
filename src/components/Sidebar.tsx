@@ -1,7 +1,8 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
-import { Select, Button } from 'antd'
+import { useState, useEffect, useContext } from "react";
+import { Select } from 'antd'
 import TotalPanel from "./TotalPanel";
+
 
 
 interface SideBarItems {
@@ -58,7 +59,19 @@ const SideBar: React.FC = () => {
         const newCheckedState = [...isChecked]; // create new Array based prev
         newCheckedState[index] = !newCheckedState[index];
         setIsChecked(newCheckedState);
+
+        // create new Array checked Items
+        /*
+        const newItems = [...items];
+
+        if (newCheckedState[index] = true) {
+            newItems[index].isChecked = true;
+        }
+
+        const isCheckedItems = [...newItems.filter(newItems => newItems.isChecked)]
+        */
     }
+
 
     //counter active checkbox
 
@@ -80,7 +93,7 @@ const SideBar: React.FC = () => {
         setSelectedTypeConst(value === 'Все элементы' ? null : value);
     }
 
-    //Set conditionals
+    //Set conditionals and filter for District and Type of Constructions
 
    const filteredItems: SideBarItems[] = items.filter((items: SideBarItems) => {
         if (selectedDistrict && items.district !== selectedDistrict) {
@@ -105,6 +118,16 @@ const SideBar: React.FC = () => {
     }
 
     let totalNum: number = totalPrice(filteredItems, isChecked);
+
+    // Filtered Array and Selected
+    const selectedItems = filteredItems.reduce((selected, item, index) => {
+        if (isChecked[index]) {
+            selected.push(item);
+        }
+        return selected;
+    }, []);
+    
+    
 
     return(
         <div className="md:w-1/3 md:h-screen sm:w-full sm:h-auto sm:relative sm:z-0">
@@ -163,7 +186,7 @@ const SideBar: React.FC = () => {
                     </div>
                 </div>
             </div>
-            
+
             <TotalPanel
                 totalNum={sumItems}
                 totalChecked={sumCheckBox}

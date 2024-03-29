@@ -7,8 +7,13 @@ interface totalNumbers {
 }
 
 const TotalPanel: React.FC<totalNumbers> = (props) => {
+
     const { totalNum, totalChecked, totalSum } = props;
-    
+
+    const handleSubmit = () => {
+        console.log(isCheckedItems);        
+    }
+
     return (
         <>
             <div className="flex flex-row justify-center items-center">
@@ -19,7 +24,7 @@ const TotalPanel: React.FC<totalNumbers> = (props) => {
                     <p>Сумма кампании: <span className="text-lg font-bold">{totalSum} ₽</span></p> 
                 </div>
                 <div className="w-1/2 flex justify-center align-middle">
-                    <Button className="text-white h-10 font-bold border-2">Создать кампанию</Button>
+                    <Button className="text-white h-10 font-bold border-2" onClick={() => handleSubmit()}>Создать кампанию</Button>
                 </div>
             </div>
         </>
