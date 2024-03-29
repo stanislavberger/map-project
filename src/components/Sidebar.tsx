@@ -120,6 +120,7 @@ const SideBar: React.FC = () => {
     let totalNum: number = totalPrice(filteredItems, isChecked);
 
     // Filtered Array and Selected
+    /*
     const selectedItems = filteredItems.reduce((selected, item, index) => {
         if (isChecked[index]) {
             selected.push(item);
@@ -127,8 +128,22 @@ const SideBar: React.FC = () => {
         return selected;
     }, []);
     
-    
+    */
+   /*
 
+    export const getSelectedItems = (filteredItems, isChecked) => {
+        const selectedItems = filteredItems.reduce((selected, item, index) => {
+            if (isChecked[index]) {
+                selected.push(item);
+            }
+            return selected;
+        }, []);
+    
+        return selectedItems;
+    };
+    */
+
+    
     return(
         <div className="md:w-1/3 md:h-screen sm:w-full sm:h-auto sm:relative sm:z-0">
             <div className="pl-4 pt-5 mb-2">
