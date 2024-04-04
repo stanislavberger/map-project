@@ -129,8 +129,9 @@ const SideBar: React.FC = () => {
     }, []);
     
     */
-   /*
-
+    
+   
+    /*
     export const getSelectedItems = (filteredItems, isChecked) => {
         const selectedItems = filteredItems.reduce((selected, item, index) => {
             if (isChecked[index]) {
@@ -139,11 +140,11 @@ const SideBar: React.FC = () => {
             return selected;
         }, []);
     
-        return selectedItems;
+        console.log(selectedItems);
     };
     */
 
-    
+
     return(
         <div className="md:w-1/3 md:h-screen sm:w-full sm:h-auto sm:relative sm:z-0">
             <div className="pl-4 pt-5 mb-2">
@@ -214,15 +215,3 @@ const SideBar: React.FC = () => {
 
 
 export default SideBar
-
-
-/* 
-{[
-                                    {value: 'Щиты 6х3 Статика', label: 'Щиты 6х3 Статика'},
-                                    {value: 'Щиты 6х3 Digital', label: 'Щиты 6х3 Digital'},
-                                    {value: 'Ситиформат 1,2х1,8', label: 'Ситиформат 1,2х1,8'},
-                                    {value: 'Пиллары 1,4х3', label: 'Пиллары 1,4х3'},
-                                    {value: 'Ситиборды 2,7х3,7', label: 'Ситиборды 2,7х3,7'},
-                                    {value: 'Супресайты 5х12', label: 'Супресайты 5х12'},
-                                ]}
-*/
